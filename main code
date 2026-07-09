@@ -1,41 +1,46 @@
+import streamlit as st
+import streamlit.components.v1 as components
+
+st.set_page_config(
+    page_title="Lieveheersbeestje Uitnodiging",
+    layout="centered"
+)
+
+html = """
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Uitnodiging</title>
 
 <style>
 
 body{
     margin:0;
-    font-family:Arial, sans-serif;
-    background:linear-gradient(#87CEEB,#d8f7c5);
     display:flex;
     justify-content:center;
     align-items:center;
-    height:100vh;
-    overflow:hidden;
+    background:linear-gradient(#87CEEB,#dff7c9);
+    font-family:Arial,sans-serif;
 }
 
 .container{
     position:relative;
     width:420px;
     height:420px;
+    margin-top:40px;
 }
 
 .invitation{
+
     position:absolute;
     inset:40px;
     background:white;
     border-radius:20px;
-    padding:30px;
+    padding:20px;
     text-align:center;
-    box-shadow:0 10px 25px rgba(0,0,0,.2);
+    box-shadow:0 10px 20px rgba(0,0,0,.2);
+
     opacity:0;
     transition:1s;
-    z-index:1;
 }
 
 .open .invitation{
@@ -43,103 +48,151 @@ body{
 }
 
 .ladybug{
+
     position:absolute;
+
     left:50%;
     top:50%;
+
     transform:translate(-50%,-50%);
-    width:240px;
-    height:240px;
+
+    width:220px;
+    height:220px;
+
     cursor:pointer;
-    z-index:5;
+
 }
 
 .head{
-    position:absolute;
-    width:90px;
-    height:90px;
-    background:#111;
+
+    width:80px;
+    height:80px;
+
+    background:black;
+
     border-radius:50%;
-    top:-15px;
-    left:75px;
+
+    position:absolute;
+
+    left:70px;
+    top:-10px;
+
 }
 
 .body{
-    position:absolute;
-    width:180px;
-    height:180px;
-    background:#111;
+
+    width:170px;
+    height:170px;
+
+    background:black;
+
     border-radius:50%;
-    left:30px;
+
+    position:absolute;
+
     top:40px;
+    left:25px;
+
 }
 
 .line{
+
     position:absolute;
-    width:6px;
-    height:180px;
-    background:#111;
-    left:117px;
-    top:40px;
-    z-index:20;
-}
-.wing{
-    position:absolute;
-    width:90px;
+
+    width:4px;
     height:170px;
+
+    background:black;
+
+    left:108px;
+    top:40px;
+
+    z-index:10;
+
+}
+
+.wing{
+
+    position:absolute;
+
+    width:85px;
+    height:165px;
+
     background:#d91c1c;
-    top:45px;
-    transition:1s ease;
+
+    top:43px;
+
+    transition:1s;
+
 }
 
 .left{
-    left:30px;
+
+    left:25px;
+
     border-radius:90px 0 70px 70px;
+
     transform-origin:right center;
+
 }
 
 .right{
-    left:120px;
+
+    left:110px;
+
     border-radius:0 90px 70px 70px;
+
     transform-origin:left center;
+
 }
 
 .open .left{
+
     transform:rotateY(130deg);
+
 }
 
 .open .right{
+
     transform:rotateY(-130deg);
+
 }
 
 .spot{
+
     position:absolute;
-    width:20px;
-    height:20px;
+
+    width:18px;
+    height:18px;
+
     background:black;
+
     border-radius:50%;
+
 }
 
 </style>
 
 </head>
+
 <body>
 
-<div class="container">
+<div class="container" id="container">
 
 <div class="invitation">
-<h1> Je bent uitgenodigd! </h1>
+
+<h1>Je bent uitgenodigd!</h1>
 
 <h2>Insectenfeestje van Marthe en Paulien</h2>
 
-<p><strong>Datum:</strong> ???</p>
+<p><b>Datum:</b> ??? </p>
 
-<p><strong>Tijd:</strong> ??? </p>
+<p><b>Tijd:</b> ??? </p>
 
-<p><strong>Locatie:</strong> ??? </p>
+<p><b>Plaats:</b> ??? </p>
 
 <p>Beter dat je er bent xxx</p>
 
-<p>🐞❤️</p>
 </div>
 
 <div class="ladybug" onclick="openBug()">
@@ -152,17 +205,17 @@ body{
 
 <div class="wing left">
 
-<div class="spot" style="top:25px;left:18px;"></div>
-<div class="spot" style="top:70px;left:48px;"></div>
-<div class="spot" style="top:120px;left:22px;"></div>
+<div class="spot" style="top:20px;left:15px;"></div>
+<div class="spot" style="top:70px;left:45px;"></div>
+<div class="spot" style="top:120px;left:20px;"></div>
 
 </div>
 
 <div class="wing right">
 
-<div class="spot" style="top:25px;left:52px;"></div>
-<div class="spot" style="top:70px;left:18px;"></div>
-<div class="spot" style="top:120px;left:48px;"></div>
+<div class="spot" style="top:20px;left:50px;"></div>
+<div class="spot" style="top:70px;left:20px;"></div>
+<div class="spot" style="top:120px;left:50px;"></div>
 
 </div>
 
@@ -173,10 +226,16 @@ body{
 <script>
 
 function openBug(){
-    document.querySelector(".container").classList.toggle("open");
+
+document.getElementById("container").classList.toggle("open");
+
 }
 
 </script>
 
 </body>
+
 </html>
+"""
+
+components.html(html, height=500, scrolling=False)
