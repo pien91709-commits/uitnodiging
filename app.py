@@ -13,212 +13,218 @@ html = """
 
 <style>
 
-body{
+body {
     margin:0;
-    background:linear-gradient(#8ed6ff,#d9f7b8);
+    background:white;
     display:flex;
     justify-content:center;
     align-items:center;
-    height:500px;
+    height:650px;
     font-family:Arial, sans-serif;
 }
 
 
-/* hoofdcontainer */
+/* hoofd */
 
-.container{
+.container {
     position:relative;
-    width:450px;
-    height:350px;
-}
-
-
-/* tekst in het lijf */
-
-.message{
-
-    position:absolute;
-
-    width:120px;
-    height:130px;
-
-    left:165px;
-    top:120px;
-
-    color:white;
-
-    text-align:center;
-
-    font-size:14px;
-
-    opacity:0;
-
-    transition:1s;
-
-    z-index:5;
-
-}
-
-
-.open .message{
-
-    opacity:1;
-
+    width:600px;
+    height:500px;
 }
 
 
 /* lieveheersbeestje */
 
-.ladybug{
+.ladybug {
 
     position:absolute;
 
-    width:300px;
-    height:250px;
+    width:360px;
+    height:360px;
 
-    left:75px;
-    top:50px;
+    left:120px;
+    top:80px;
 
     cursor:pointer;
 
 }
 
 
-/* zwart lijf */
+/* zwart lichaam */
 
-.body{
-
-    position:absolute;
-
-    width:160px;
-    height:180px;
-
-    background:#111;
-
-    border-radius:80px;
-
-    left:70px;
-    top:40px;
-
-    z-index:3;
-
-}
-
-
-/* hoofd */
-
-.head{
+.body {
 
     position:absolute;
 
-    width:80px;
-    height:80px;
+    width:240px;
+    height:270px;
 
     background:#111;
 
     border-radius:50%;
 
-    left:110px;
-    top:0;
+    left:60px;
+    top:70px;
 
-    z-index:4;
-
-}
-
-
-/* middenstreep */
-
-.line{
-
-    position:absolute;
-
-    width:5px;
-    height:170px;
-
-    background:black;
-
-    left:148px;
-    top:45px;
-
-    z-index:6;
+    z-index:1;
 
 }
 
 
-/* vleugels */
+/* kop */
 
-.wing{
+.head {
 
     position:absolute;
 
-    width:120px;
-    height:180px;
+    width:110px;
+    height:110px;
 
-    background:#e32626;
+    background:#111;
 
-    top:40px;
+    border-radius:50%;
 
-    transition:1s ease;
+    left:125px;
+    top:5px;
 
     z-index:2;
 
 }
 
 
-/* links */
+/* tekst */
 
-.left{
-
-    left:75px;
-
-    border-radius:90px 20px 20px 90px;
-
-}
-
-
-/* rechts */
-
-.right{
-
-    left:155px;
-
-    border-radius:20px 90px 90px 20px;
-
-}
-
-
-
-/* horizontaal openen */
-
-.open .left{
-
-    transform:translateX(-110px);
-
-}
-
-
-.open .right{
-
-    transform:translateX(110px);
-
-}
-
-
-
-/* stippen */
-
-.spot{
+.message {
 
     position:absolute;
 
-    width:22px;
-    height:22px;
+    width:170px;
+
+    left:95px;
+    top:145px;
+
+    color:white;
+
+    text-align:center;
+
+    font-size:16px;
+
+    line-height:1.3;
+
+    opacity:0;
+
+    transition:0.8s;
+
+    z-index:4;
+
+}
+
+
+.open .message {
+
+    opacity:1;
+
+}
+
+
+/* middenlijn */
+
+.line {
+
+    position:absolute;
+
+    width:6px;
+
+    height:260px;
+
+    background:#000;
+
+    left:177px;
+
+    top:75px;
+
+    z-index:3;
+
+}
+
+
+/* vleugels */
+
+.wing {
+
+    position:absolute;
+
+    width:135px;
+
+    height:270px;
+
+    background:#e32626;
+
+    top:70px;
+
+    transition:1s ease;
+
+    z-index:5;
+
+}
+
+
+/* linker vleugel */
+
+.left {
+
+    left:60px;
+
+    border-radius:135px 20px 20px 135px;
+
+}
+
+
+/* rechter vleugel */
+
+.right {
+
+    left:165px;
+
+    border-radius:20px 135px 135px 20px;
+
+}
+
+
+
+/* open beweging horizontaal */
+
+.open .left {
+
+    transform:translateX(-150px);
+
+}
+
+
+.open .right {
+
+    transform:translateX(150px);
+
+}
+
+
+
+/* zwarte stippen */
+
+.spot {
+
+    position:absolute;
+
+    width:25px;
+
+    height:25px;
 
     background:black;
 
     border-radius:50%;
 
 }
+
 
 </style>
 
@@ -231,9 +237,13 @@ body{
 <div class="container" id="bug">
 
 
+<div class="ladybug" onclick="openBug()">
+
+
+
 <div class="message">
 
-<b>🎉 Feestje! 🎉</b>
+<b>🎉 Uitnodiging 🎉</b>
 
 <br><br>
 
@@ -259,14 +269,11 @@ Kom je ook? ❤️
 
 
 
-<div class="ladybug" onclick="openBug()">
-
-
-
 <div class="wing left">
 
-<div class="spot" style="top:30px;left:35px;"></div>
-<div class="spot" style="top:90px;left:65px;"></div>
+<div class="spot" style="top:40px;left:45px;"></div>
+<div class="spot" style="top:120px;left:80px;"></div>
+<div class="spot" style="top:200px;left:40px;"></div>
 
 </div>
 
@@ -274,8 +281,9 @@ Kom je ook? ❤️
 
 <div class="wing right">
 
-<div class="spot" style="top:30px;right:35px;"></div>
-<div class="spot" style="top:90px;right:65px;"></div>
+<div class="spot" style="top:40px;right:45px;"></div>
+<div class="spot" style="top:120px;right:80px;"></div>
+<div class="spot" style="top:200px;right:40px;"></div>
 
 </div>
 
@@ -299,7 +307,9 @@ Kom je ook? ❤️
 
 function openBug(){
 
-document.getElementById("bug").classList.toggle("open");
+document
+.getElementById("bug")
+.classList.toggle("open");
 
 }
 
@@ -307,13 +317,12 @@ document.getElementById("bug").classList.toggle("open");
 
 
 </body>
-
 </html>
 """
 
 
 components.html(
     html,
-    height=500,
+    height=650,
     scrolling=False
 )
