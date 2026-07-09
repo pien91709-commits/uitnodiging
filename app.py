@@ -2,168 +2,217 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 st.set_page_config(
-    page_title="Lieveheersbeestje Uitnodiging",
+    page_title="Lieveheersbeestje uitnodiging",
     layout="centered"
 )
 
 html = """
 <!DOCTYPE html>
-<html lang="nl">
+<html>
 <head>
 
 <style>
 
 body{
     margin:0;
+    background:linear-gradient(#8ed6ff,#d9f7b8);
     display:flex;
     justify-content:center;
     align-items:center;
-    background:linear-gradient(#87CEEB,#dff7c9);
-    font-family:Arial,sans-serif;
+    height:500px;
+    font-family:Arial, sans-serif;
 }
+
+
+/* hoofdcontainer */
 
 .container{
     position:relative;
-    width:420px;
-    height:420px;
-    margin-top:40px;
+    width:450px;
+    height:350px;
 }
 
-.invitation{
+
+/* tekst in het lijf */
+
+.message{
 
     position:absolute;
-    inset:40px;
-    background:white;
-    border-radius:20px;
-    padding:20px;
+
+    width:120px;
+    height:130px;
+
+    left:165px;
+    top:120px;
+
+    color:white;
+
     text-align:center;
-    box-shadow:0 10px 20px rgba(0,0,0,.2);
+
+    font-size:14px;
 
     opacity:0;
+
     transition:1s;
+
+    z-index:5;
+
 }
 
-.open .invitation{
+
+.open .message{
+
     opacity:1;
+
 }
+
+
+/* lieveheersbeestje */
 
 .ladybug{
 
     position:absolute;
 
-    left:50%;
-    top:50%;
+    width:300px;
+    height:250px;
 
-    transform:translate(-50%,-50%);
-
-    width:220px;
-    height:220px;
+    left:75px;
+    top:50px;
 
     cursor:pointer;
 
 }
 
+
+/* zwart lijf */
+
+.body{
+
+    position:absolute;
+
+    width:160px;
+    height:180px;
+
+    background:#111;
+
+    border-radius:80px;
+
+    left:70px;
+    top:40px;
+
+    z-index:3;
+
+}
+
+
+/* hoofd */
+
 .head{
+
+    position:absolute;
 
     width:80px;
     height:80px;
 
-    background:black;
+    background:#111;
 
     border-radius:50%;
 
-    position:absolute;
+    left:110px;
+    top:0;
 
-    left:70px;
-    top:-10px;
-
-}
-
-.body{
-
-    width:170px;
-    height:170px;
-
-    background:black;
-
-    border-radius:50%;
-
-    position:absolute;
-
-    top:40px;
-    left:25px;
+    z-index:4;
 
 }
+
+
+/* middenstreep */
 
 .line{
 
     position:absolute;
 
-    width:4px;
+    width:5px;
     height:170px;
 
     background:black;
 
-    left:108px;
-    top:40px;
+    left:148px;
+    top:45px;
 
-    z-index:10;
+    z-index:6;
 
 }
+
+
+/* vleugels */
 
 .wing{
 
     position:absolute;
 
-    width:85px;
-    height:165px;
+    width:120px;
+    height:180px;
 
-    background:#d91c1c;
+    background:#e32626;
 
-    top:43px;
+    top:40px;
 
-    transition:1s;
+    transition:1s ease;
+
+    z-index:2;
 
 }
+
+
+/* links */
 
 .left{
 
-    left:25px;
+    left:75px;
 
-    border-radius:90px 0 70px 70px;
-
-    transform-origin:right center;
+    border-radius:90px 20px 20px 90px;
 
 }
+
+
+/* rechts */
 
 .right{
 
-    left:110px;
+    left:155px;
 
-    border-radius:0 90px 70px 70px;
-
-    transform-origin:left center;
+    border-radius:20px 90px 90px 20px;
 
 }
+
+
+
+/* horizontaal openen */
 
 .open .left{
 
-    transform:rotateY(130deg);
+    transform:translateX(-110px);
 
 }
+
 
 .open .right{
 
-    transform:rotateY(-130deg);
+    transform:translateX(110px);
 
 }
+
+
+
+/* stippen */
 
 .spot{
 
     position:absolute;
 
-    width:18px;
-    height:18px;
+    width:22px;
+    height:22px;
 
     background:black;
 
@@ -175,67 +224,96 @@ body{
 
 </head>
 
+
 <body>
 
-<div class="container" id="container">
 
-<div class="invitation">
+<div class="container" id="bug">
 
-<h1>Je bent uitgenodigd!</h1>
 
-<h2>Insectenfeestje van Marthe en Paulien</h2>
+<div class="message">
 
-<p><b>Datum:</b> ??? </p>
+<b>🎉 Feestje! 🎉</b>
 
-<p><b>Tijd:</b> ??? </p>
+<br><br>
 
-<p><b>Plaats:</b> ??? </p>
+Emma wordt 6 jaar!
 
-<p>Beter dat je er bent xxx</p>
+<br><br>
+
+📅 15 augustus
+
+<br>
+
+⏰ 14:00 uur
+
+<br>
+
+📍 Speeltuin
+
+<br><br>
+
+Kom je ook? ❤️
 
 </div>
+
+
 
 <div class="ladybug" onclick="openBug()">
 
-<div class="head"></div>
 
-<div class="body"></div>
-
-<div class="line"></div>
 
 <div class="wing left">
 
-<div class="spot" style="top:20px;left:15px;"></div>
-<div class="spot" style="top:70px;left:45px;"></div>
-<div class="spot" style="top:120px;left:20px;"></div>
+<div class="spot" style="top:30px;left:35px;"></div>
+<div class="spot" style="top:90px;left:65px;"></div>
 
 </div>
+
+
 
 <div class="wing right">
 
-<div class="spot" style="top:20px;left:50px;"></div>
-<div class="spot" style="top:70px;left:20px;"></div>
-<div class="spot" style="top:120px;left:50px;"></div>
+<div class="spot" style="top:30px;right:35px;"></div>
+<div class="spot" style="top:90px;right:65px;"></div>
 
 </div>
 
-</div>
+
+
+<div class="body"></div>
+
+<div class="head"></div>
+
+<div class="line"></div>
+
 
 </div>
+
+
+</div>
+
+
 
 <script>
 
 function openBug(){
 
-document.getElementById("container").classList.toggle("open");
+document.getElementById("bug").classList.toggle("open");
 
 }
 
 </script>
+
 
 </body>
 
 </html>
 """
 
-components.html(html, height=500, scrolling=False)
+
+components.html(
+    html,
+    height=500,
+    scrolling=False
+)
