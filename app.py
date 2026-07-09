@@ -13,36 +13,68 @@ html = """
 
 <style>
 
-body {
+body{
     margin:0;
     background:white;
+    height:700px;
     display:flex;
     justify-content:center;
     align-items:center;
-    height:650px;
-    font-family:Arial, sans-serif;
+    font-family:Arial;
 }
 
 
-/* hoofd */
-
-.container {
+.container{
     position:relative;
     width:600px;
-    height:500px;
+    height:600px;
 }
+
+
+/* tekst achter de vleugels */
+
+.message{
+
+    position:absolute;
+
+    width:220px;
+    height:180px;
+
+    left:190px;
+    top:270px;
+
+    color:white;
+
+    text-align:center;
+
+    font-size:18px;
+
+    line-height:1.4;
+
+    opacity:0;
+
+    transition:0.8s;
+
+    z-index:2;
+}
+
+
+.open .message{
+    opacity:1;
+}
+
 
 
 /* lieveheersbeestje */
 
-.ladybug {
+.bug{
 
     position:absolute;
 
-    width:360px;
-    height:360px;
+    width:420px;
+    height:420px;
 
-    left:120px;
+    left:90px;
     top:80px;
 
     cursor:pointer;
@@ -50,117 +82,41 @@ body {
 }
 
 
-/* zwart lichaam */
 
-.body {
+/* zwarte lichaam */
+
+.body{
 
     position:absolute;
 
-    width:240px;
-    height:270px;
+    width:360px;
+    height:330px;
 
     background:#111;
 
     border-radius:50%;
 
-    left:60px;
-    top:70px;
+    left:30px;
+    top:90px;
 
     z-index:1;
 
 }
 
 
-/* kop */
 
-.head {
+/* rode schildvleugels */
 
-    position:absolute;
-
-    width:110px;
-    height:110px;
-
-    background:#111;
-
-    border-radius:50%;
-
-    left:125px;
-    top:5px;
-
-    z-index:2;
-
-}
-
-
-/* tekst */
-
-.message {
+.wing{
 
     position:absolute;
 
-    width:170px;
+    width:180px;
+    height:330px;
 
-    left:95px;
-    top:145px;
+    background:#f22222;
 
-    color:white;
-
-    text-align:center;
-
-    font-size:16px;
-
-    line-height:1.3;
-
-    opacity:0;
-
-    transition:0.8s;
-
-    z-index:4;
-
-}
-
-
-.open .message {
-
-    opacity:1;
-
-}
-
-
-/* middenlijn */
-
-.line {
-
-    position:absolute;
-
-    width:6px;
-
-    height:260px;
-
-    background:#000;
-
-    left:177px;
-
-    top:75px;
-
-    z-index:3;
-
-}
-
-
-/* vleugels */
-
-.wing {
-
-    position:absolute;
-
-    width:135px;
-
-    height:270px;
-
-    background:#e32626;
-
-    top:70px;
+    top:90px;
 
     transition:1s ease;
 
@@ -169,59 +125,123 @@ body {
 }
 
 
-/* linker vleugel */
+/* links */
 
-.left {
+.left{
 
-    left:60px;
+    left:30px;
 
-    border-radius:135px 20px 20px 135px;
+    border-radius:180px 0 0 180px;
 
-}
-
-
-/* rechter vleugel */
-
-.right {
-
-    left:165px;
-
-    border-radius:20px 135px 135px 20px;
+    transform-origin:right center;
 
 }
 
 
+/* rechts */
 
-/* open beweging horizontaal */
+.right{
 
-.open .left {
+    left:210px;
 
-    transform:translateX(-150px);
+    border-radius:0 180px 180px 0;
 
-}
-
-
-.open .right {
-
-    transform:translateX(150px);
+    transform-origin:left center;
 
 }
 
 
+/* openklappen */
 
-/* zwarte stippen */
+.open .left{
 
-.spot {
+    transform:translateX(-170px) rotate(-10deg);
+
+}
+
+
+.open .right{
+
+    transform:translateX(170px) rotate(10deg);
+
+}
+
+
+/* zwarte middenlijn */
+
+.line{
 
     position:absolute;
 
-    width:25px;
+    width:8px;
 
-    height:25px;
+    height:300px;
+
+    background:black;
+
+    left:206px;
+
+    top:105px;
+
+    z-index:7;
+
+}
+
+
+/* kop */
+
+.head{
+
+    position:absolute;
+
+    width:170px;
+
+    height:120px;
+
+    background:black;
+
+    border-radius:90px 90px 50px 50px;
+
+    left:125px;
+
+    top:0;
+
+    z-index:8;
+
+}
+
+
+/* stippen */
+
+.spot{
+
+    position:absolute;
+
+    width:35px;
+
+    height:35px;
 
     background:black;
 
     border-radius:50%;
+
+}
+
+
+
+/* antennes */
+
+.antenna{
+
+    position:absolute;
+
+    width:80px;
+
+    height:5px;
+
+    background:black;
+
+    top:15px;
 
 }
 
@@ -237,7 +257,7 @@ body {
 <div class="container" id="bug">
 
 
-<div class="ladybug" onclick="openBug()">
+<div class="bug" onclick="openBug()">
 
 
 
@@ -249,7 +269,7 @@ body {
 
 Emma wordt 6 jaar!
 
-<br><br>
+<br>
 
 📅 15 augustus
 
@@ -269,11 +289,15 @@ Kom je ook? ❤️
 
 
 
+<div class="body"></div>
+
+
+
 <div class="wing left">
 
-<div class="spot" style="top:40px;left:45px;"></div>
-<div class="spot" style="top:120px;left:80px;"></div>
-<div class="spot" style="top:200px;left:40px;"></div>
+<div class="spot" style="top:80px;left:50px;"></div>
+<div class="spot" style="top:170px;left:90px;"></div>
+<div class="spot" style="top:250px;left:55px;"></div>
 
 </div>
 
@@ -281,23 +305,22 @@ Kom je ook? ❤️
 
 <div class="wing right">
 
-<div class="spot" style="top:40px;right:45px;"></div>
-<div class="spot" style="top:120px;right:80px;"></div>
-<div class="spot" style="top:200px;right:40px;"></div>
+<div class="spot" style="top:80px;right:50px;"></div>
+<div class="spot" style="top:170px;right:90px;"></div>
+<div class="spot" style="top:250px;right:55px;"></div>
 
 </div>
 
 
-
-<div class="body"></div>
-
-<div class="head"></div>
 
 <div class="line"></div>
 
 
-</div>
+<div class="head"></div>
 
+
+
+</div>
 
 </div>
 
@@ -321,8 +344,4 @@ document
 """
 
 
-components.html(
-    html,
-    height=650,
-    scrolling=False
-)
+components.html(html,height=700)
